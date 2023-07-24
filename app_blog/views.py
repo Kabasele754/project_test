@@ -13,19 +13,10 @@ def indexView(request, template_name="blog/pages/index.html"):
     #          Key      Value
 
     # instance article
-    a1 = Article("Java", "java description")
-    a2 = Article("Python", "python description")
-    a3 = Article("Django", "Django description")
-    a4 = Article("C++", "C++ description")
-    a5 = Article("C#", "C# description")
-    a6 = Article("JavaScripts", "javaScripts description")
-    a7 = Article("Dart", "Dart description")
-    a8 = Article("Html", "Html description")
-    list_article = [a1, a2, a3, a4, a5, a6,a7,a8]
-    #
-    for art in list_article:
-        print(art.title)
-    print(a1.title)
+    # SELECT * FROM Article; with SQL
+    # With ORM
+    list_article = Article.objects.all()
+
     context['name'] = bonjour
     context['article'] = list_article
 
