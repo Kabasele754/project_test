@@ -13,6 +13,14 @@ class Article(models.Model):
     update = models.DateTimeField(auto_now=True)
     publication = models.BooleanField()
 
-    # def __str__(self):
-    #     return self.title
+    def __str__(self):
+        return self.title
 
+
+class Contact(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return f'{self.name} {self.email}'

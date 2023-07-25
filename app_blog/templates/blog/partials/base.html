@@ -3,11 +3,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% block tile %} {% endblock %}
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static  'blog/css/my_style.css' %}">
 
-
+{% block style %}{% endblock %}
 </head>
 <body>
 
@@ -22,5 +22,7 @@
 
 
 <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
 </body>
 </html>
