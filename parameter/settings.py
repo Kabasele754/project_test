@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # mes applications
     'app_blog.apps.AppBlogConfig',
+    # ajout de module
+    'fontawesomefree'
 ]
 
 MIDDLEWARE = [

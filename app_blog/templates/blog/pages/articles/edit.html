@@ -1,0 +1,32 @@
+<!-- Modal -->
+<div class="modal fade" id="editModal{{article.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-edit"></i> Edit Article</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img class="img rounded-circle" width="50" src="{{ article.image.url }}">
+        {{ article.image}}
+
+        <form action="{% url 'edit_article' article.id %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label class="form-control-label">Title : </label>
+          <input type="text" class="form-control" value="{{article.title}}" name="title">
+
+           <label class="form-control-label">Image : </label>
+          <input type="file" class="form-control" name="image" value="{{article.image}}">
+           <label class="form-control-label">Description : </label>
+          <textarea class="form-control" name="description">
+           {{ article.description}}
+          </textarea>
+
+          <button type="submit" class="btn btn-primary mt-3 float-end w-100">Enregister</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

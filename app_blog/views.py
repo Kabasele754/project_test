@@ -108,3 +108,59 @@ def deleteContactView(request, contact_id):
     contact_one.delete()
 
     return redirect('gestion_contact')
+
+def gestionArticleView(request, template_name="blog/pages/gestion_article.html"):
+    context = {}
+    articles = Article.objects.all()
+    context['articles'] = articles
+
+    return render(request, template_name, context)
+
+
+def addArticleView(request):
+
+    # la condition pour la methode POST s'il est dans le request
+    if request.method == "POST":
+        title = request.POST['title']
+        image = request.FILES['image']
+        description = request.POST['description']
+
+        # instance object Article
+        article = Article(
+            title = title,
+            image = image,
+            description = description,
+            publication= True
+        )
+        # save object article
+        article.save()
+        #
+        return redirect('gestion_article')
+
+def updateArticleView(request, article_id, template_name="blog/pages/gestion_article.html"):
+
+    article_one = Article.objects.get(id=article_id)
+    print("id", article_one)
+    context = {}
+    #context['article'] = article_one
+    #  la condition == post
+    if request.method == "POST":
+        # recuper les donnees qui se trouve dans input et on le modifie
+        title = request.POST['title']
+        image = request.FILES['image'] or None
+        description = request.POST['description']
+        #  assign de valeurs input
+        article_one.title = title
+        article_one.image = image
+        article_one.description = description
+        # on sauvegarde la modification
+        article_one.save()
+
+        return redirect('gestion_article')
+    return render(request, template_name, context)
+
+def deleteArticleView(request, article_id):
+    article_one = Article.objects.get(id=article_id)
+    article_one.delete()
+    return redirect('gestion_article')
+

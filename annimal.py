@@ -22,7 +22,7 @@ class Chien(Animal):
 
 #  instancier de la classe
 
-c1 = Chien("chien policier", "Mamifer")
+c1 = Chien(name="chien policier",espece= "Mamifer")
 
 print(c1.nom_a)
 print(c1.espece)
