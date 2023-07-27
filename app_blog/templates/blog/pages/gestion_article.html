@@ -12,14 +12,14 @@
 <!-- ==================== End col titre   -->
 <!-- ==================== col button-->
     <div class="col">
-         <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa-solid fa-plus fa-3x"></i>Ajouter Article</button>
+         <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa-solid fa-plus fa-2x"></i>Ajouter Article</button>
     </div>
 <!-- ==================== End col button-->
 </div>
 <!-- ====================== End  Row titre  et button  -->
 
 <!-- ==================== Row Tableau-->
-<div class="row">
+<div class="row mt-3">
 <!-- ==================== Col Tableau   -->
 <div class="col">
     <table class="table">
@@ -42,9 +42,9 @@
 <!--        forloop.counter0-->
       <th scope="row">{{ forloop.counter }}</th>
       <td> <img class="img rounded-circle" width="50" src="{{ article.image.url }}"></td>
-      <td>{{ article.title}}</td>
-      <td>{{ article.create }}</td>
-      <td>{{article.update}}</td>
+      <td>{{ article.title|truncatechars:10}}</td>
+      <td>{{ article.create|date:"m-d-Y m:t:s" }}</td>
+      <td>{{article.update|date:"m-d-Y m:t:s"}}</td>
 
         {% if article.publication == True %}
         <td>Publier</td>
@@ -52,7 +52,7 @@
         <td>No publier</td>
          {% endif %}
 
-      <td>{{article.description}}</td>
+      <td>{{article.description|truncatechars:10}}</td>
       <td>
           <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{article.id}}" ><i class="fa fa-edit fa-1x"></i></a>
           <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{article.id}}"><i class="fa fa-trash fa-1x"></i></a>
