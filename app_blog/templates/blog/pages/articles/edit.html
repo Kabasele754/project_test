@@ -7,8 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img class="img rounded-circle" width="50" src="{{ article.image.url }}">
-        {{ article.image}}
+        <img class="img rounded-circle" width="200" src="{{ article.image.url }}">
 
         <form action="{% url 'edit_article' article.id %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}

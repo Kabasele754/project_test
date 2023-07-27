@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Article, Contact
@@ -137,27 +139,33 @@ def addArticleView(request):
         #
         return redirect('gestion_article')
 
+
 def updateArticleView(request, article_id, template_name="blog/pages/gestion_article.html"):
 
     article_one = Article.objects.get(id=article_id)
     print("id", article_one)
     context = {}
-    #context['article'] = article_one
     #  la condition == post
     if request.method == "POST":
         # recuper les donnees qui se trouve dans input et on le modifie
+        if len(request.FILES) != 0:
+            if len(article_one.image) > 0:
+                os.remove(article_one.image.path)
+            article_one.image = request.FILES['image']
+
         title = request.POST['title']
-        image = request.FILES['image'] or None
+        #image = request.FILES['image'] or None
         description = request.POST['description']
         #  assign de valeurs input
         article_one.title = title
-        article_one.image = image
+        #article_one.image = image
         article_one.description = description
         # on sauvegarde la modification
         article_one.save()
 
         return redirect('gestion_article')
     return render(request, template_name, context)
+
 
 def deleteArticleView(request, article_id):
     article_one = Article.objects.get(id=article_id)
