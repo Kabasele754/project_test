@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,16 +57,29 @@
 
 
 
+
 <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+
  {% for message in messages  %}
     {% if message.tags == 'success' %}
          <script>
+
              var m = "{{ message }}";
-             swal("Perfet !", m,"success")
+             //     title,    message, icon
+             swal({
+                position: 'top-end',
+                title: m,
+                showConfirmButton: false,
+                 icon: 'success',
+                 timer: 1500
+                })
+
+
          </script>
 
     {% else %}
@@ -78,3 +93,4 @@
 
 </body>
 </html>
+

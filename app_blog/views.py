@@ -1,8 +1,8 @@
 import os
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Article, Contact
+
 
 # Create your views here.
 
@@ -136,7 +136,8 @@ def addArticleView(request):
         )
         # save object article
         article.save()
-        #
+        # message de success
+        messages.success(request, f"Vous avez ajoute avec succee {article.title} ")
         return redirect('gestion_article')
 
 
@@ -162,18 +163,20 @@ def updateArticleView(request, article_id, template_name="blog/pages/gestion_art
         article_one.description = description
         # on sauvegarde la modification
         article_one.save()
+        messages.success(request, f"Vous avez modifier avec success {article_one.title}")
 
         return redirect('gestion_article')
+
+    else:
+        messages.error(request, f"Erreur d'ajout ")
     return render(request, template_name, context)
 
 
 def deleteArticleView(request, article_id):
     article_one = Article.objects.get(id=article_id)
-    if article_one:
-        article_one.delete()
-        messages.success(request, (f' Vous avez supprimer avec success'))
-    else:
 
-        messages.error(request, "Vous ne pouvez pas supprimer ")
+    article_one.delete()
+    messages.success(request, f'Vous avez supprimer avec success')
+
     return redirect('gestion_article')
 

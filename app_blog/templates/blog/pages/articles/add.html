@@ -11,13 +11,13 @@
         <form action="/add-article/" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <label class="form-control-label mt-3">Title : </label>
-          <input type="text" class="form-control mt-3" name="title">
+          <input type="text" class="form-control mt-3" name="title" required>
 
            <label class="form-control-label mt-3">Image :</label>
-          <input type="file" class="form-control mt-3" name="image">
+          <input type="file" class="form-control mt-3" name="image" required>
 
            <label class="form-control-label mt-3">Description :</label>
-          <textarea class="form-control mt-3" name="description"></textarea>
+          <textarea class="form-control mt-3" name="description" required></textarea>
 
           <button type="submit" class="btn btn-primary mt-3 float-end w-100">Enregister</button>
 
