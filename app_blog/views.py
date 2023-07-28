@@ -169,6 +169,11 @@ def updateArticleView(request, article_id, template_name="blog/pages/gestion_art
 
 def deleteArticleView(request, article_id):
     article_one = Article.objects.get(id=article_id)
-    article_one.delete()
+    if article_one:
+        article_one.delete()
+        messages.success(request, (f' Vous avez supprimer avec success'))
+    else:
+
+        messages.error(request, "Vous ne pouvez pas supprimer ")
     return redirect('gestion_article')
 
