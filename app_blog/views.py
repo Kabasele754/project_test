@@ -2,7 +2,7 @@ import os
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Article, Contact
-
+import sweetify
 
 # Create your views here.
 
@@ -137,7 +137,11 @@ def addArticleView(request):
         # save object article
         article.save()
         # message de success
-        messages.success(request, f"Vous avez ajoute avec succee {article.title} ")
+        # messages.success(request, f"Vous avez ajoute avec succee {article.title} ")
+        sweetify.success(request, 'Perfect', text='vous avez ajouter avec success',
+                         persistent='OK',
+
+                         )
         return redirect('gestion_article')
 
 
@@ -163,7 +167,12 @@ def updateArticleView(request, article_id, template_name="blog/pages/gestion_art
         article_one.description = description
         # on sauvegarde la modification
         article_one.save()
-        messages.success(request, f"Vous avez modifier avec success {article_one.title}")
+        #messages.success(request, f"Vous avez modifier avec success {article_one.title}")
+        sweetify.success(request, 'Perfect', text='vous avez modifier avec success',
+                          position='top-end',
+                         timer=1500,
+                         timerProgressBar='true',
+                         )
 
         return redirect('gestion_article')
 

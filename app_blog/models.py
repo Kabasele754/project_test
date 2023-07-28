@@ -8,7 +8,7 @@ class Article(models.Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(default='/article')
+    image = models.ImageField(upload_to='article/')
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     publication = models.BooleanField()
