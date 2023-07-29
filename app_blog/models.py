@@ -5,7 +5,6 @@ from django.db import models
 
 
 class Article(models.Model):
-
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='article/')
